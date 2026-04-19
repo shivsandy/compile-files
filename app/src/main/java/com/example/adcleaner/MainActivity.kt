@@ -1,0 +1,29 @@
+package com.example.adcleaner
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.adcleaner.ui.AdCleanerApp
+import com.example.adcleaner.ui.theme.AdCleanerTheme
+import com.example.adcleaner.ui.viewmodel.AdCleanerViewModel
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AdCleanerTheme {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    val vm: AdCleanerViewModel = viewModel(factory = AdCleanerViewModel.factory(application))
+                    AdCleanerApp(viewModel = vm)
+                }
+            }
+        }
+    }
+}
